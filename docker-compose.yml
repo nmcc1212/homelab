@@ -1,0 +1,212 @@
+version: "3"
+services:
+  grafana:
+    container_name: grafana
+    entrypoint:
+      - /run.sh
+    environment:
+      - PATH=/usr/share/grafana/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+      - GF_PATHS_DATA=/var/lib/grafana
+      - GF_PATHS_HOME=/usr/share/grafana
+      - GF_PATHS_LOGS=/var/log/grafana
+      - GF_PATHS_PLUGINS=/var/lib/grafana/plugins
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+    hostname: grafana
+    image: grafana/grafana:latest
+    mac_address: 02:42:ac:11:00:05
+    ports:
+      - 3000:3000/tcp
+    working_dir: /usr/share/grafana
+  homebridge:
+    container_name: homebridge
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/homebridge/node_modules/.bin
+      - QEMU_ARCH=aarch64
+      - S6_KEEP_ENV=1
+      - NODE_VERSION=14.17.3
+      - HOMEBRIDGE_VERSION=1.3.4
+      - CONFIG_UI_VERSION=4.41.1
+      - HOMEBRIDGE_CONFIG_UI=1
+      - HOMEBRIDGE_CONFIG_UI_PORT=8581
+      - ENABLE_AVAHI=1
+    hostname: homebridge
+    image: oznu/homebridge:ubuntu
+    networks:
+      - host
+    volumes:
+      - /home/nial/homebridge:/homebridge
+    working_dir: /homebridge
+  librespeed:
+    container_name: librespeed
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD=PASSWORD
+      - CUSTOM_RESULTS=false
+      - DB_TYPE=sqlite
+      - DB_NAME=DB_NAME
+      - DB_HOSTNAME=DB_HOSTNAME
+      - DB_USERNAME=DB_USERNAME
+      - DB_PASSWORD=DB_PASSWORD
+      - DB_PORT=DB_PORT
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/root
+      - TERM=xterm
+    hostname: librespeed
+    image: ghcr.io/linuxserver/librespeed
+    mac_address: 02:42:ac:11:00:02
+    ports:
+      - 86:80/tcp
+    restart: unless-stopped
+    volumes:
+      - /home/nial/speedtest/config:/config:rw
+  prometheus:
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus
+        --web.console.libraries=/usr/share/prometheus/console_libraries --web.console.templates=/usr/share/prometheus/consoles'
+    container_name: prometheus
+    entrypoint:
+      - /bin/prometheus
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    hostname: prometheus
+    image: prom/prometheus:latest
+    mac_address: 02:42:ac:11:00:07
+    ports:
+      - 9090:9090/tcp
+    volumes:
+      - /home/nial/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - e08ecfdb823813a3394245fe77242202f58a6b879e7ef1b50bdbf4851af487b9:/prometheus
+    working_dir: /prometheus
+  zabbix-agent:
+    command:
+      - '/usr/sbin/zabbix_agentd --foreground -c /etc/zabbix/zabbix_agentd.conf'
+    container_name: zabbix-agent
+    entrypoint:
+      - /sbin/tini
+      - --
+      - /usr/bin/docker-entrypoint.sh
+    environment:
+      - ZBX_SERVER_HOST=192.168.68.125
+      - ZBX_HOSTNAME=hydrogen
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - TERM=xterm
+      - ZBX_VERSION=5.4.2
+      - ZBX_SOURCES=https://git.zabbix.com/scm/zbx/zabbix.git
+    hostname: zabbix-agent
+    image: zabbix/zabbix-agent:latest
+    mac_address: 02:42:ac:11:00:06
+    ports:
+      - 10050:10050/tcp
+    working_dir: /var/lib/zabbix
+  code-server:
+    container_name: code-server
+    entrypoint:
+      - /usr/bin/entrypoint.sh
+      - --bind-addr
+      - 0.0.0.0:8080
+      - .
+    environment:
+      - DOCKER_USER=nial
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - LANG=en_US.UTF-8
+      - USER=coder
+    hostname: vscode
+    image: codercom/code-server:latest
+    mac_address: 02:42:ac:11:00:06
+    ports:
+      - 9123:8080/tcp
+    user: 1000:1000
+    volumes:
+      - /home/nial/.config:/home/coder/.config
+      - /home/nial/fail2ban/data:/home/coder/project
+    working_dir: /home/coder
+  fail2ban:
+    command:
+      - 'fail2ban-server -f -x -v start'
+    container_name: fail2ban
+    entrypoint:
+      - /entrypoint.sh
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - FAIL2BAN_VERSION=0.11.2
+      - TZ=UTC
+    hostname: fail2ban
+    image: crazymax/fail2ban:latest
+    networks:
+      - host
+    restart: always
+    volumes:
+      - /var/log:/var/log:ro
+      - /home/nial/fail2ban/data:/data
+  postgres:
+    command:
+      - postgres
+    container_name: postgres
+    entrypoint:
+      - docker-entrypoint.sh
+    environment:
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_USER=statup
+      - POSTGRES_DB=statup
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/10/bin
+      - GOSU_VERSION=1.12
+      - LANG=en_US.utf8
+      - PG_MAJOR=10
+      - PG_VERSION=10.17-1.pgdg90+1
+      - PGDATA=/var/lib/postgresql/data
+    expose:
+      - 5432/tcp
+    hostname: postgres
+    image: postgres:10
+    restart: always
+    volumes:
+      - /home/nial/statup/postgres:/var/lib/postgresql/data:rw
+  privatebin:
+    container_name: privatebin
+    entrypoint:
+      - /init
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - CONFIG_PATH=/srv/cfg
+      - S6_READ_ONLY_ROOT=1
+    hostname: privatebin
+    image: privatebin/nginx-fpm-alpine:1.3.5
+    mac_address: 02:42:ac:11:00:03
+    ports:
+      - 8123:8080/tcp
+    restart: always
+    user: 65534:82
+    working_dir: /var/www
+  statup:
+    command:
+      - '/bin/sh -c statping --port $PORT'
+    container_name: statup
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=8080
+      - DB_CONN=postgres
+      - DB_HOST=postgres
+      - DB_USER=statup
+      - DB_PASS=password123
+      - DB_DATABASE=statup
+      - 'NAME=EC2 Example'
+      - 'DESCRIPTION=This is a Statping Docker Compose instance'
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - IS_DOCKER=true
+      - SASS=/usr/local/bin/sassc
+      - STATPING_DIR=/app
+      - PORT=8080
+    hostname: statping
+    image: statping/statping:latest
+    ports:
+      - 8080:8080/tcp
+    restart: always
+    volumes:
+      - /home/nial/statup/app:/app
+    working_dir: /app
+networks:
+  host:
+    external: true
