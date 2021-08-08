@@ -78,7 +78,6 @@ services:
       - 9090:9090/tcp
     volumes:
       - /home/nial/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - e08ecfdb823813a3394245fe77242202f58a6b879e7ef1b50bdbf4851af487b9:/prometheus
     working_dir: /prometheus
   zabbix-agent:
     command:
