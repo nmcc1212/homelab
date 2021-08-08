@@ -8,7 +8,7 @@ server {
     gzip_types text/plain application/xml text/css application/javascript;
 
     location  / {
-        proxy_pass        http://192.168.68.125/zabbix;
+        proxy_pass        http://192.168.68.125/;
     }
 
     access_log /var/log/nginx/access.log;
