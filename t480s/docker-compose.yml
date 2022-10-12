@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+    heimdall:
+        container_name: heimdall
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/London
+        ports:
+            - '81:80'
+            - '445:443'
+        volumes:
+            - '/home/nial/heimdall:/config'
+        restart: unless-stopped
+        image: 'lscr.io/linuxserver/heimdall:latest'
+    exportarr_sonarr:
+        container_name: exportarr_sonarr
+        environment:
+            - PORT=9707
+            - 'URL=http://100.84.114.64:8989'
+            - APIKEY=e47ba918c2e34df48019791796dee4c6
+        restart: unless-stopped
+        ports:
+            - '9707:9707'
+        image: 'ghcr.io/onedr0p/exportarr:latest sonarr'
+    exportarr_radarr:
+        container_name: exportarr_radarr
+        environment:
+            - PORT=9707
+            - 'URL=http://100.84.114.64:7878'
+            - APIKEY=fd69033a4b194580ba576df25e4d6ca7
+        restart: unless-stopped
+        ports:
+            - '9708:9708'
+        image: 'ghcr.io/onedr0p/exportarr:latest radarr'
+    agent:
+        ports:
+            - '9001:9001'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/var/lib/docker/volumes:/var/lib/docker/volumes'
+        environment:
+            - 'true'
+        container_name: portainer_agent
+        restart: always
+        image: 'portainer/agent:2.9.3'

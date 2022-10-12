@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+    overseerr:
+        image: sctx/overseerr:latest
+        container_name: overseerr
+        environment:
+            - LOG_LEVEL=debug
+            - TZ=Europe/London
+        ports:
+            - 5055:5055
+        volumes:
+            - /home/nial/overseerr/config:/app/config
+        restart: unless-stopped
+    qbittorrent-exporter:
+        container_name: qbittorrent-exporter
+        environment:
+            - QBITTORRENT_USERNAME=admin
+            - QBITTORRENT_PASSWORD=2Grangeway
+            - 'QBITTORRENT_BASE_URL=http://100.84.114.64:8087'
+        ports:
+            - '17871:17871'
+        image: 'caseyscarborough/qbittorrent-exporter:latest'
+    agent:
+        ports:
+            - '9001:9001'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/var/lib/docker/volumes:/var/lib/docker/volumes'
+        environment:
+            - 'true'
+        container_name: portainer_agent
+        restart: always
+        image: 'portainer/agent:2.9.3'

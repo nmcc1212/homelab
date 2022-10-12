@@ -1,0 +1,34 @@
+version: '3.3'
+services:
+    influxdb:
+        ports:
+            - '8086:8086'
+        volumes:
+            - '/home/nial/influxdb:/var/lib/influxdb'
+        image: 'influxdb:1.8'
+    speedtest-to-influxdb:
+        container_name: speedflux
+        environment:
+            - NAMESPACE=None
+            - INFLUX_DB_ADDRESS=100.127.172.18
+            - INFLUX_DB_PORT=8086
+            - INFLUX_DB_USER=root
+            - INFLUX_DB_PASSWORD=ad
+            - INFLUX_DB_DATABASE=speedtest
+            - SPEEDTEST_INTERVAL=5
+            - SPEEDTEST_FAIL_INTERVAL=5
+            - INFLUX_DB_TAGS
+            - SPEEDTEST_SERVER_ID=12746
+            - LOG_TYPE=info
+        image: breadlysm/speedtest-to-influxdb
+    agent:
+        ports:
+            - '9001:9001'
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/var/lib/docker/volumes:/var/lib/docker/volumes'
+        environment:
+            - 'true'
+        container_name: portainer_agent
+        restart: always
+        image: 'portainer/agent:2.9.3'
