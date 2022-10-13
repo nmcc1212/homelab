@@ -1,0 +1,27 @@
+// Example/default ACLs for unrestricted connections.
+{
+	// Declare static groups of users beyond those in the identity service.
+	"groups": {
+		"group:example": ["user1@example.com", "user2@example.com"],
+	},
+	// Declare convenient hostname aliases to use in place of IP addresses.
+	"hosts": {
+		"example-host-1": "100.100.100.100",
+	},
+	// Access control lists.
+	"acls": [
+		// Match absolutely everything. Comment out this section if you want
+		// to define specific ACL restrictions.
+		{"action": "accept", "users": ["*"], "ports": ["*:*"]},
+	],
+	"ssh": [
+		// The default SSH policy, which lets users SSH into devices they own.
+		// Learn more at https://tailscale.com/kb/1193/tailscale-ssh/
+		{
+			"action": "check",
+			"src":    ["autogroup:members"],
+			"dst":    ["autogroup:self"],
+			"users":  ["autogroup:nonroot", "root"],
+		},
+	],
+}
