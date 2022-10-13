@@ -3,7 +3,7 @@ services:
     semaphore:
         ports:
             - 3000:3000
-        image: 'semaphoreui/semaphore:latest'
+        image: 'semaphoreui/semaphore'
         container_name: semaphore
         environment:
             SEMAPHORE_DB_DIALECT: bolt
@@ -12,7 +12,7 @@ services:
             SEMAPHORE_ADMIN_EMAIL: admin@localhost
             SEMAPHORE_ADMIN: admin
     prowlarr:
-        image: ghcr.io/linuxserver/prowlarr
+        image: lscr.io/linuxserver/prowlarr:develop
         container_name: prowlarr
         environment:
             - PUID=1000
@@ -33,5 +33,5 @@ services:
             - 'true'
         container_name: portainer_agent
         restart: always
-        image: 'portainer/agent:2.9.3'
+        image: 'portainer/agent'
   
