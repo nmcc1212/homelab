@@ -16,7 +16,7 @@ services:
         - '443:443' # Public HTTPS Port
         - '81:81' # Admin Web Port
         volumes:
-        - /users/nial/nginx-proxy-manager:/data
-        - /users/nial/letsencrypt:/etc/letsencrypt
+        - /home/nial/nginx-proxy-manager:/data
+        - /home/nial/letsencrypt:/etc/letsencrypt
         container_name: nginx-proxy-manager
         
