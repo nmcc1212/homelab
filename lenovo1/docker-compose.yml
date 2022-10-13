@@ -6,6 +6,7 @@ services:
         volumes:
             - '/home/nial/influxdb:/var/lib/influxdb'
         image: 'influxdb:1.8'
+        container_name: influxdb
     speedtest-to-influxdb:
         container_name: speedflux
         environment:

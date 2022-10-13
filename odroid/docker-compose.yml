@@ -6,6 +6,7 @@ services:
         volumes:
             - '/home/nial/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'
         image: prom/prometheus
+        container_name: prometheus
     pihole-exporter:
         environment:
             - PIHOLE_HOSTNAME=t480s
@@ -14,6 +15,7 @@ services:
         ports:
             - '9617:9617'
         image: 'ekofr/pihole-exporter:latest'
+        container_name: pihole-exporter
     portainer-ce:
         ports:
             - '8000:8000'
