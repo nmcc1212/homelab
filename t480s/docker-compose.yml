@@ -22,7 +22,8 @@ services:
         restart: unless-stopped
         ports:
             - '9707:9707'
-        image: 'ghcr.io/onedr0p/exportarr:latest sonarr'
+        image: 'ghcr.io/onedr0p/exportarr:latest'
+        command: ["sonarr"]
     exportarr_radarr:
         container_name: exportarr_radarr
         environment:
@@ -32,4 +33,5 @@ services:
         restart: unless-stopped
         ports:
             - '9708:9708'
-        image: 'ghcr.io/onedr0p/exportarr:latest radarr'
+        image: 'ghcr.io/onedr0p/exportarr:latest'
+        command: ["radarr"]
