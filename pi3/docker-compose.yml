@@ -19,4 +19,3 @@ services:
         - /home/nial/nginx-proxy-manager:/data
         - /home/nial/letsencrypt:/etc/letsencrypt
         container_name: nginx-proxy-manager
-        
