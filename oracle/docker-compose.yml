@@ -34,4 +34,3 @@ services:
         container_name: portainer_agent
         restart: always
         image: 'portainer/agent'
-  
