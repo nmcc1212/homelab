@@ -23,14 +23,3 @@ services:
         ports:
             - 9696:9696
         restart: unless-stopped
-    agent:
-        ports:
-            - '9001:9001'
-        volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'
-            - '/var/lib/docker/volumes:/var/lib/docker/volumes'
-        environment:
-            - 'true'
-        container_name: portainer_agent
-        restart: always
-        image: 'portainer/agent'

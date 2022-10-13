@@ -19,14 +19,3 @@ services:
         ports:
             - '17871:17871'
         image: 'caseyscarborough/qbittorrent-exporter:latest'
-    agent:
-        ports:
-            - '9001:9001'
-        volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'
-            - '/var/lib/docker/volumes:/var/lib/docker/volumes'
-        environment:
-            - 'true'
-        container_name: portainer_agent
-        restart: always
-        image: 'portainer/agent:2.9.3'
