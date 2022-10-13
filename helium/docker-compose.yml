@@ -15,8 +15,6 @@ services:
     qbittorrent-exporter:
         container_name: qbittorrent-exporter
         environment:
-            - QBITTORRENT_USERNAME=admin
-            - QBITTORRENT_PASSWORD=2Grangeway
             - 'QBITTORRENT_BASE_URL=http://100.84.114.64:8087'
         ports:
             - '17871:17871'
