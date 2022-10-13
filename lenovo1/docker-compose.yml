@@ -7,6 +7,7 @@ services:
             - '/home/nial/influxdb:/var/lib/influxdb'
         image: 'influxdb:1.8'
         container_name: influxdb
+        restart: unless-stopped
     speedtest-to-influxdb:
         container_name: speedflux
         environment:
@@ -22,3 +23,4 @@ services:
             - SPEEDTEST_SERVER_ID=12746
             - LOG_TYPE=info
         image: breadlysm/speedtest-to-influxdb
+        restart: unless-stopped

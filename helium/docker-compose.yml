@@ -19,3 +19,4 @@ services:
         ports:
             - '17871:17871'
         image: 'caseyscarborough/qbittorrent-exporter:latest'
+        restart: unless-stopped

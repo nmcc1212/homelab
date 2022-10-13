@@ -1,16 +1,5 @@
 version: '3.3'
 services:
-    semaphore:
-        ports:
-            - 3000:3000
-        image: 'semaphoreui/semaphore'
-        container_name: semaphore
-        environment:
-            SEMAPHORE_DB_DIALECT: bolt
-            SEMAPHORE_ADMIN_PASSWORD: 2Grangeway
-            SEMAPHORE_ADMIN_NAME: admin
-            SEMAPHORE_ADMIN_EMAIL: admin@localhost
-            SEMAPHORE_ADMIN: admin
     prowlarr:
         image: lscr.io/linuxserver/prowlarr:develop
         container_name: prowlarr
