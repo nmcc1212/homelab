@@ -19,7 +19,7 @@ services:
             - INFLUX_DB_DATABASE=speedtest
             - SPEEDTEST_INTERVAL=5
             - SPEEDTEST_FAIL_INTERVAL=5
-            - INFLUX_DB_TAGS
+            - INFLUX_DB_TAGS=*
             - SPEEDTEST_SERVER_ID=12746
             - LOG_TYPE=info
         image: breadlysm/speedtest-to-influxdb
