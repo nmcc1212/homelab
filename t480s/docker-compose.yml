@@ -27,7 +27,7 @@ services:
     exportarr_radarr:
         container_name: exportarr_radarr
         environment:
-            - PORT=9707
+            - PORT=9708
             - 'URL=http://100.84.114.64:7878'
             - APIKEY=fd69033a4b194580ba576df25e4d6ca7
         restart: unless-stopped
