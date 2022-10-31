@@ -1,6 +1,0 @@
-# interfaces with portainer webhooks to restart containers when they are updated through gitOps
-
-    - name: pi4 webhook
-      uses: distributhor/workflow-webhook@v2
-      env:
-        webhook_url: ${{ secrets.PI4_WEBHOOK }}
