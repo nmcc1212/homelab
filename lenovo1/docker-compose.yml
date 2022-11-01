@@ -36,3 +36,21 @@ services:
         environment:
             - VIRTUAL_HOST=board.n1al.ml
             - VIRTUAL_PORT=8000
+    code-server:
+        image: lscr.io/linuxserver/code-server:latest
+        container_name: code-server
+        environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=Europe/London
+          - PASSWORD=2Grangeway #optional
+          - HASHED_PASSWORD= #optional
+          - SUDO_PASSWORD=ad #optional
+          - SUDO_PASSWORD_HASH= #optional
+          - PROXY_DOMAIN=vscode.n1al.ml #optional
+          - DEFAULT_WORKSPACE=/config/workspace #optional
+        volumes:
+          - /home/nial/code-server/config:/config
+        ports:
+          - 8443:8443
+        restart: unless-stopped
