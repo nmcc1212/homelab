@@ -20,7 +20,7 @@ services:
             - PGID=1000
             - TZ=Europe/London
         volumes:
-            - /home/ubuntu/uptime-kuma/:/app/data
+            - /home/ubuntu/uptime-kuma/data:/app/data
         ports:
             - 3001:3001
         restart: unless-stopped
