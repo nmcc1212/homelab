@@ -24,18 +24,6 @@ services:
             - LOG_TYPE=info
         image: breadlysm/speedtest-to-influxdb
         restart: unless-stopped
-
-    focalboard:
-        container_name: focalboard
-        image: mattermost/focalboard:latest
-        restart: unless-stopped
-        ports:
-            - 8000:8000
-        volumes:
-            - /home/nial/focalboard:/var/focalboard
-        environment:
-            - VIRTUAL_HOST=board.n1al.ml
-            - VIRTUAL_PORT=8000
     code-server:
         image: lscr.io/linuxserver/code-server:latest
         container_name: code-server
