@@ -12,8 +12,8 @@ services:
       - /home/nial/jellyfin:/config
       - /home/nial/Media/TV:/data/tvshows
       - /home/nial/Media/Movies:/data/movies
-      - /mnt/NM3/Media/TV:/data/tvshows-remote
-      - /mnt/NM3/Media/Movies:/data/movies-remote
+      - /home/nial/mnt/NM3/Media/TV:/data/tvshows-remote
+      - /home/nial/mnt/NM3/Media/Movies:/data/movies-remote
 
     ports:
       - 8096:8096
@@ -50,8 +50,8 @@ services:
       - /home/nial/plex:/config
       - /home/nial/Media/TV:/tv
       - /home/nial/Media/Movies:/movies
-      - /mnt/NM3/Media/TV:/tv-remote
-      - /mnt/NM3/Media/Movies:/movies-remote
+      - /home/nial/mnt/NM3/Media/TV:/tv-remote
+      - /home/nial/mnt/NM3/Media/Movies:/movies-remote
     restart: unless-stopped
   
   sonarr:
@@ -66,7 +66,7 @@ services:
       - /home/nial/sonarr:/config
       - /home/nial/Media/TV:/tv
       - /home/nial/Media/DL:/downloads
-      - /mnt/NM3/Media/TV:/tv-remote
+      - /home/nial/mnt/NM3/Media/TV:/tv-remote
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -83,7 +83,7 @@ services:
       - /home/nial/radarr:/config
       - /home/nial/Media/Movies:/movies
       - /home/nial/Media/DL:/downloads
-      - /mnt/NM3/Media/Movies:/movies-remote
+      - /home/nial/mnt/NM3/Media/Movies:/movies-remote
     ports:
       - 7878:7878
     restart: unless-stopped
