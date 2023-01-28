@@ -45,7 +45,7 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM= #optional
+      - PLEX_CLAIM=claim-Yzqx3dZi-zPcsHA4Yz3y #optional
     volumes:
       - /home/nial/plex:/config
       - /home/nial/Media/TV:/tv
