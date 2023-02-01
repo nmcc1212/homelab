@@ -17,7 +17,7 @@ services:
         container_name: exportarr_sonarr
         environment:
             - PORT=9707
-            - 'URL=http://100.84.114.64:8989'
+            - 'URL=http://100.102.104.69:8989'
             - APIKEY=e47ba918c2e34df48019791796dee4c6
         restart: unless-stopped
         ports:
@@ -28,7 +28,7 @@ services:
         container_name: exportarr_radarr
         environment:
             - PORT=9708
-            - 'URL=http://100.84.114.64:7878'
+            - 'URL=http://100.102.104.69:7878'
             - APIKEY=fd69033a4b194580ba576df25e4d6ca7
         restart: unless-stopped
         ports:
