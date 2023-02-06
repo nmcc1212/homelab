@@ -27,5 +27,5 @@ services:
         ports:
             - '7889:7889'
         volumes:
-          - /home/nial/nginx-proxy-manager/logs:/var/log/nginx/:ro
+          - /home/nial/nginx-proxy-manager/logs/:/var/log/nginx/:ro
           - /home/nial/goaccess/config.conf:/etc/goaccess/goaccess.conf
