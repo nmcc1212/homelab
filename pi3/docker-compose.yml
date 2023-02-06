@@ -20,3 +20,13 @@ services:
         - /home/nial/nginx-proxy-manager:/data
         - /home/nial/letsencrypt:/etc/letsencrypt
         container_name: nginx-proxy-manager
+    
+    goaccess:
+        image: gregyankovoy/goaccess
+        container_name: goaccess
+        restart: unless-stopped
+        ports:
+            - '7889:7889'
+        volumes:
+          - /home/nial/nginx-proxy-manager/logs:/opt/log
+          - /home/nial/goaccess:/config
