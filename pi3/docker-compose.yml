@@ -22,7 +22,7 @@ services:
         container_name: nginx-proxy-manager
     
     goaccess:
-        image: gregyankovoy/goaccess
+        image: hectorm/goaccess
         container_name: goaccess
         restart: unless-stopped
         ports:
