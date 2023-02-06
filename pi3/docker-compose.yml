@@ -24,7 +24,6 @@ services:
     goaccess:
         image: hectorm/goaccess
         container_name: goaccess
-        restart: unless-stopped
         ports:
             - '7889:7889'
         volumes:
