@@ -20,12 +20,14 @@ services:
         - /home/nial/nginx-proxy-manager:/data
         - /home/nial/letsencrypt:/etc/letsencrypt
         container_name: nginx-proxy-manager
-    
     goaccess:
-        image: hectorm/goaccess
+        image: 'xavierh/goaccess-for-nginxproxymanager:latest'
         container_name: goaccess
+        restart: always
         ports:
-            - '7889:7889'
+            - '7880:7880'
+        environment:
+            - TZ=Europe/London         
+            - LOG_TYPE=NPM
         volumes:
-          - /home/nial/nginx-proxy-manager/logs/:/var/log/nginx/:ro
-          - /home/nial/goaccess/goaccess.conf:/etc/goaccess/goaccess.conf
+        - /home/nial//nginx-proxy-manager/logs:/opt/log
