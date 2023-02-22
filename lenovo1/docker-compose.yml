@@ -42,3 +42,11 @@ services:
         ports:
           - 8443:8443
         restart: unless-stopped
+    golink:
+        image: ghcr.io/tailscale/golink:main
+        container_name: golink
+        ports:
+          - 8080:8080
+        volumes:
+          - /home/nial/golink:/home/nonroot
+        restart: unless-stopped
