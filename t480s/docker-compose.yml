@@ -18,7 +18,7 @@ services:
         environment:
             - PORT=9707
             - 'URL=http://100.102.104.69:8989'
-            - APIKEY=e47ba918c2e34df48019791796dee4c6
+            - APIKEY=b8d50d7bb36b4b289cded9d174d84216
         restart: unless-stopped
         ports:
             - '9707:9707'
@@ -29,7 +29,7 @@ services:
         environment:
             - PORT=9708
             - 'URL=http://100.102.104.69:7878'
-            - APIKEY=fd69033a4b194580ba576df25e4d6ca7
+            - APIKEY=35942850095042d8ae07af92a78cbf55
         restart: unless-stopped
         ports:
             - '9708:9708'
