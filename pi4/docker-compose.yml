@@ -2,17 +2,19 @@ version: "3.9"
 
 services:
   caddy:
-    image: caddy:<version>
-    restart: unless-stopped
+    image: caddy:latest
+    container_name: caddy
     ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+      - 100.88.213.67:80:80
+      - 100.88.213.67P:443:443
     volumes:
-      - $PWD/Caddyfile:/etc/caddy/Caddyfile
-      - $PWD/site:/srv
-      - caddy_data:/data
-      - caddy_config:/config
+      - /home/nial/homelab/pi4/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - /home/nial/homelab/pi4/caddy/data:/data
+      - /home/nial/homelab/pi4/caddy/config:/config
+      #- $CONFIGDIR/caddy/cert:/cert
+      - /var/lib/tailscale/certs/pi4.tailnet-ea75.ts.net.crt:/cert/tailscale.crt:ro
+      - /var/lib/tailscale/certs/pi4.tailnet-ea75.ts.net.key:/cert/tailscale.key:ro
+    restart: unless-stopped
 
 volumes:
   caddy_data:
