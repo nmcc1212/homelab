@@ -1,3 +1,7 @@
+{
+        debug
+}
+
 pi4.tailnet-ea75.ts.net {
         tls /cert/tailscale.crt /cert/tailscale.key
 
@@ -35,16 +39,16 @@ pi4.tailnet-ea75.ts.net {
         reverse_proxy /requestrr/* 100.102.104.69:4545
 
         redir /prowlarr /prowlarr/
-        reverse_proxy /prowlarr/* oracle.tailnet-ea75.ts.net:9696
+        reverse_proxy /prowlarr/* 100.108.78.98:9696
 
         redir /pihole /pihole/
-        reverse_proxy /pihole/* t480s.tailnet-ea75.ts.net:8000
+        reverse_proxy /pihole/* 100.83.228.72:8000
 
         redir /vscode /vscode/
         reverse_proxy /vscode/* 100.127.172.18:8443
 
         redir /homeassistant /homeassistant/
-        reverse_proxy /homeassistant/* homeassistant.tailnet-ea75.ts.net:8123
+        reverse_proxy /homeassistant/* 100.102.215.37:8123
 
         reverse_proxy / 100.83.228.72:445
 }
