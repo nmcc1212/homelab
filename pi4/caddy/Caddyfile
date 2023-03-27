@@ -2,53 +2,67 @@
         debug
 }
 
-pi4.tailnet-ea75.ts.net {
+radarr.n1al.local {
         tls /cert/tailscale.crt /cert/tailscale.key
-
-        redir /radarr /radarr/
-        reverse_proxy /radarr/* 100.102.104.69:7878
-
-        redir /sonarr /sonarr/
-        reverse_proxy /sonarr/* 100.102.104.69:8989
-
-        redir /jellyfin /jellyfin/
-        reverse_proxy /jellyfin/* 100.102.104.69:8096
-
-        redir /qbittorrent /qbittorrent/
-        reverse_proxy /qbittorrent/* 100.102.104.69:8080
-
-        redir /grafana /grafana/
-        reverse_proxy /grafana/* 100.88.213.67:3000
-
-        redir /overseerr /overseerr/
-        reverse_proxy /overseerr/* 100.102.104.69:5055
-
-        redir /uptime-kuma /uptime-kuma/
-        reverse_proxy /uptime-kuma/* 100.108.78.98:3001
-
-        redir /portainer /portainer/
-        reverse_proxy /portainer/* 100.120.10.94:9000
-
-        redir /plex /plex/
-        reverse_proxy /plex/* 100.102.104.69:32400
-
-        redir /prometheus /prometheus/
-        reverse_proxy /prometheus/* 100.120.10.94:9090
-
-        redir /requestrr /requestrr/
-        reverse_proxy /requestrr/* 100.102.104.69:4545
-
-        redir /prowlarr /prowlarr/
-        reverse_proxy /prowlarr/* 100.108.78.98:9696
-
-        redir /pihole /pihole/
-        reverse_proxy /pihole/* 100.83.228.72:8000
-
-        redir /vscode /vscode/
-        reverse_proxy /vscode/* 100.127.172.18:8443
-
-        redir /homeassistant /homeassistant/
-        reverse_proxy /homeassistant/* 100.102.215.37:8123
-
-        reverse_proxy / 100.83.228.72:445
+        reverse_proxy 100.102.104.69:7878
+}
+sonarr.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.102.104.69:8989
+}
+jellyfin.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.102.104.69:8096
+}
+qbittorrent.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.102.104.69:8080
+}
+grafana.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.88.213.67:3000
+}
+overseerr.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 00.102.104.69:5055
+}
+uptime-kuma.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.108.78.98:3001
+}
+portainer.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.120.10.94:9000
+}
+plex.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.102.104.69:32400
+}
+prometheus.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.120.10.94:9090
+}
+requestrr.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.102.104.69:4545
+}
+prowlarr.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.108.78.98:9696
+}
+pihole.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.83.228.72:8000
+}
+vscode.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.127.172.18:8443
+}
+homeassistant.n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.102.215.37:8123
+}
+n1al.local {
+        tls /cert/tailscale.crt /cert/tailscale.key
+        reverse_proxy 100.83.228.72:443
 }
