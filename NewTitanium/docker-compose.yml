@@ -101,8 +101,6 @@ services:
       - /home/nial/Media/DL:/downloads
     restart: unless-stopped
     network_mode: service:gluetun
-    depends_on:
-      - gluetun
 
   gluetun:
     image: qmcgaw/gluetun
