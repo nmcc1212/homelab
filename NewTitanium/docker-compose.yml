@@ -100,9 +100,6 @@ services:
       - /home/nial/qbittorrent:/config
       - /home/nial/Media/DL:/downloads
     ports:
-      - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
     restart: unless-stopped
     network_mode: service:gluetun
     depends_on:
