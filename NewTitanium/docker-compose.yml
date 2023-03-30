@@ -114,7 +114,7 @@ services:
     environment:
       - VPN_SERVICE_PROVIDER=custom
       - VPN_TYPE=wireguard
-      - VPN_ENDPOINT_IP=engage.cloudflareclient.com
+      - VPN_ENDPOINT_IP=162.159.192.1
       - VPN_ENDPOINT_PORT=2408
       - WIREGUARD_PUBLIC_KEY=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
       - WIREGUARD_PRIVATE_KEY=ePddOmb+3Ry2x0ra7NZbZcsqkwAsw8Dt6+mzzlpvqE4=
