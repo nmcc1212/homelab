@@ -104,3 +104,27 @@ services:
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped
+    network_mode: service:gluetun
+    depends_on:
+      - gluetun
+
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 8000:8000
+      - 6881:6881
+      - 6881:6881/udp
+    environment:
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      - VPN_ENDPOINT_IP=engage.cloudflareclient.com
+      - VPN_ENDPOINT_PORT=2408
+      - WIREGUARD_PUBLIC_KEY=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+      - WIREGUARD_PRIVATE_KEY=ePddOmb+3Ry2x0ra7NZbZcsqkwAsw8Dt6+mzzlpvqE4=
+      - WIREGUARD_ADDRESSES=172.16.0.2/32
+    restart: unless-stopped
+
+    
