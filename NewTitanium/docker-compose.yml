@@ -99,7 +99,6 @@ services:
     volumes:
       - /home/nial/qbittorrent:/config
       - /home/nial/Media/DL:/downloads
-    ports:
     restart: unless-stopped
     network_mode: service:gluetun
     depends_on:
