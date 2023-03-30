@@ -100,7 +100,7 @@ services:
       - /home/nial/qbittorrent:/config
       - /home/nial/Media/DL:/downloads
     restart: unless-stopped
-    network_mode: service:gluetun
+    network_mode: "service:gluetun"
 
   gluetun:
     image: qmcgaw/gluetun
