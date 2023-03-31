@@ -61,3 +61,15 @@ services:
             - '17871:17871'
         image: 'caseyscarborough/qbittorrent-exporter:latest'
         restart: unless-stopped
+    nginx-proxy-manager:
+        image: 'jc21/nginx-proxy-manager:latest'
+        restart: unless-stopped
+        ports:
+
+        - '80:80' # Public HTTP Port
+        - '443:443' # Public HTTPS Port
+        - '81:81' # Admin Web Port
+        volumes:
+        - /home/nial/nginx-proxy-manager:/data
+        - /home/nial/letsencrypt:/etc/letsencrypt
+        container_name: nginx-proxy-manager
