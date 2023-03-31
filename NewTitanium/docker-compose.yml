@@ -100,25 +100,9 @@ services:
       - /home/nial/qbittorrent:/config
       - /home/nial/Media/DL:/downloads
     restart: unless-stopped
-    network_mode: "service:gluetun"
-
-  gluetun:
-    image: qmcgaw/gluetun
-    container_name: gluetun
-    cap_add:
-      - NET_ADMIN
     ports:
-      - 8080:8080
-      - 6881:6881
-      - 6881:6881/udp
-    environment:
-      - VPN_SERVICE_PROVIDER=custom
-      - VPN_TYPE=wireguard
-      - VPN_ENDPOINT_IP=162.159.192.1
-      - VPN_ENDPOINT_PORT=2408
-      - WIREGUARD_PUBLIC_KEY=bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
-      - WIREGUARD_PRIVATE_KEY=ePddOmb+3Ry2x0ra7NZbZcsqkwAsw8Dt6+mzzlpvqE4=
-      - WIREGUARD_ADDRESSES=172.16.0.2/32
-    restart: unless-stopped
+    - 8080:8080
+    - 6881:6881
+    - 6881:6881/udp
 
     
