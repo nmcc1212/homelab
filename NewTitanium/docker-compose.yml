@@ -102,9 +102,26 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - UMASK_SET=022 #optional
+      - DOCKER_MODS=ghcr.io/tailscale-dev/docker-mod:main
+      # tailscale configuration
+
+      # make sure this is persisted in a volume
+      - TAILSCALE_STATE_DIR=/var/lib/tailscale
+      - TAILSCALE_SERVE_MODE=https
+      - TAILSCALE_SERVE_PORT=8080
+      - TAILSCALE_USE_SSH=1
+      - TAILSCALE_HOSTNAME=qbittorrent
+
+      ## uncomment to enable funnel
+      ## remember that if you do, it's exposed to the internet, so be careful!
+      #- TAILSCALE_FUNNEL=on
+
+      # replace this with your authkey from the admin panel
+      - TAILSCALE_AUTHKEY=${TAILSCALE_AUTHKEY}
     volumes:
       - /home/nial/qbittorrent:/config
       - /home/nial/Media/DL:/downloads
+      - qbittorent-tailscale:/var/lib/tailscale
     restart: unless-stopped
     ports:
       - 8080:8080
