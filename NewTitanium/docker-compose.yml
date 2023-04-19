@@ -93,7 +93,6 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
-
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
