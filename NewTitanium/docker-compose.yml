@@ -121,7 +121,6 @@ services:
     volumes:
       - /home/nial/qbittorrent:/config
       - /home/nial/Media/DL:/downloads
-      - qbittorent-tailscale:/var/lib/tailscale
     restart: unless-stopped
     ports:
       - 8080:8080
