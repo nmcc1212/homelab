@@ -89,7 +89,7 @@ services:
       - /home/nial/Media/Movies:/movies
       - /home/nial/Media/DL:/downloads
       - /home/nial/mnt/one-old/Media/Movies:/movies-remote
-      - /home/nial/mnt/one-new/Media/Movies:/movies-remote2
+      - /home/nial/mnt/one-new/Movies:/movies-remote2
     ports:
       - 7878:7878
     restart: unless-stopped
