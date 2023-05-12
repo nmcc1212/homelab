@@ -73,3 +73,15 @@ services:
         - /home/nial/nginx-proxy-manager:/data
         - /home/nial/letsencrypt:/etc/letsencrypt
         container_name: nginx-proxy-manager
+    freshrss:
+        image: linuxserver/freshrss
+        container_name: freshrss
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/London
+        volumes:
+            - /home/nial/freshrss/config:/config
+        ports:
+            - 8081:80
+        restart: unless-stopped
