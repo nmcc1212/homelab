@@ -14,8 +14,8 @@ services:
       - /home/nial/Media/Movies:/data/movies
       - /home/nial/mnt/one-old/Media/TV:/data/tvshows-remote
       - /home/nial/mnt/one-old/Media/Movies:/data/movies-remote
-      - /home/nial/mnt/one-new/Media/TV:/tv-remote2
-      - /home/nial/mnt/one-new/Media/Movies:/movies-remote2
+      - /home/nial/mnt/one-new/TV:/tv-remote2
+      - /home/nial/mnt/one-new/Movies:/movies-remote2
 
     ports:
       - 8096:8096
