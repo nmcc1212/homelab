@@ -54,8 +54,8 @@ services:
       - /home/nial/Media/Movies:/movies
       - /home/nial/mnt/one-old/Media/TV:/tv-remote
       - /home/nial/mnt/one-old/Media/Movies:/movies-remote
-      - /home/nial/mnt/one-new/Media/TV:/tv-remote2
-      - /home/nial/mnt/one-new/Media/Movies:/movies-remote2
+      - /home/nial/mnt/one-new/TV:/tv-remote2
+      - /home/nial/mnt/one-new/Movies:/movies-remote2
     restart: unless-stopped
   
   sonarr:
@@ -71,7 +71,7 @@ services:
       - /home/nial/Media/TV:/tv
       - /home/nial/Media/DL:/downloads
       - /home/nial/mnt/one-old/Media/TV:/tv-remote
-      - /home/nial/mnt/one-new/Media/TV:/tv-remote2
+      - /home/nial/mnt/one-new/TV:/tv-remote2
     ports:
       - 8989:8989
     restart: unless-stopped
