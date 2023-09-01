@@ -65,7 +65,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - UMASK_SET=022 #optional
+      - UMASK_SET=022
     volumes:
       - /bigpool/containers/sonarr:/config
       - /bigpool/Media/TV:/tv
