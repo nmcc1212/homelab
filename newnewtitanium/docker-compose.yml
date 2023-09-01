@@ -1,0 +1,111 @@
+version: "2.1"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - JELLYFIN_PublishedServerUrl=100.125.70.69
+    volumes:
+      - /bigpool/containers/jellyfin:/config
+      - /bigpool/Media/TV:/data/tvshows
+      - /bigpool/Media/Movies:/data/movies
+      - /mnt/one-old/Media/TV:/data/tvshows-remote
+      - /mnt/one-old/Media/Movies:/data/movies-remote
+      - /mnt/one-new/TV:/tv-remote2
+      - /mnt/one-new/Movies:/movies-remote2
+
+    ports:
+      - 8096:8096
+      - 8920:8920 #HTTPS
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
+    devices:
+      - /dev/dri:/dev/dri #intel
+    restart: unless-stopped
+
+  requestrr:
+    image: lscr.io/linuxserver/requestrr:latest
+    container_name: requestrr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /bigpool/containers/requestrr/config:/config
+    ports:
+      - 4545:4545
+    restart: unless-stopped
+
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM=claim-Yzqx3dZi-zPcsHA4Yz3y #optional
+    volumes:
+      - /bigpool/containers/plex:/config
+      - /bigpool/Media/TV:/tv
+      - /bigpool/Media/Movies:/movies
+      - /mnt/one-old/Media/TV:/tv-remote
+      - /mnt/one-old/Media/Movies:/movies-remote
+      - /mnt/one-new/TV:/tv-remote2
+      - /mnt/one-new/Movies:/movies-remote2
+    restart: unless-stopped
+  
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK_SET=022
+    volumes:
+      - /bigpool/containers/sonarr:/config
+      - /bigpool/Media/TV:/tv
+      - /bigpool/Media/DL:/downloads
+      - /mnt/one-old/Media/TV:/tv-remote
+      - /mnt/one-new/TV:/tv-remote2
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK_SET=022 #optional
+    volumes:
+      - /bigpool/containers/radarr:/config
+      - /bigpool/Media/Movies:/movies
+      - /bigpool/Media/DL:/downloads
+      - /mnt/one-old/Media/Movies:/movies-remote
+      - /mnt/one-new/Movies:/movies-remote2
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK_SET=022 #optional
+    volumes:
+      - /bigpool/containers/qbittorrent:/config
+      - /bigpool/Media/DL:/downloads
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
