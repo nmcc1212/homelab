@@ -7,15 +7,15 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - JELLYFIN_PublishedServerUrl=100.102.104.69
+      - JELLYFIN_PublishedServerUrl=100.125.70.69
     volumes:
-      - /home/nial/jellyfin:/config
-      - /home/nial/Media/TV:/data/tvshows
-      - /home/nial/Media/Movies:/data/movies
-      - /home/nial/mnt/one-old/Media/TV:/data/tvshows-remote
-      - /home/nial/mnt/one-old/Media/Movies:/data/movies-remote
-      - /home/nial/mnt/one-new/TV:/tv-remote2
-      - /home/nial/mnt/one-new/Movies:/movies-remote2
+      - /bigpool/containers/jellyfin:/config
+      - /bigpool/Media/TV:/data/tvshows
+      - /bigpool/Media/Movies:/data/movies
+      - /mnt/one-old/Media/TV:/data/tvshows-remote
+      - /mnt/one-old/Media/Movies:/data/movies-remote
+      - /mnt/one-new/TV:/tv-remote2
+      - /mnt/one-new/Movies:/movies-remote2
 
     ports:
       - 8096:8096
@@ -34,7 +34,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - /home/nial/requestrr/config:/config
+      - /bigpool/containers/requestrr/config:/config
     ports:
       - 4545:4545
     restart: unless-stopped
@@ -49,13 +49,13 @@ services:
       - VERSION=docker
       - PLEX_CLAIM=claim-Yzqx3dZi-zPcsHA4Yz3y #optional
     volumes:
-      - /home/nial/plex:/config
-      - /home/nial/Media/TV:/tv
-      - /home/nial/Media/Movies:/movies
-      - /home/nial/mnt/one-old/Media/TV:/tv-remote
-      - /home/nial/mnt/one-old/Media/Movies:/movies-remote
-      - /home/nial/mnt/one-new/TV:/tv-remote2
-      - /home/nial/mnt/one-new/Movies:/movies-remote2
+      - /bigpool/containers/plex:/config
+      - /bigpool/Media/TV:/tv
+      - /bigpool/Media/Movies:/movies
+      - /mnt/one-old/Media/TV:/tv-remote
+      - /mnt/one-old/Media/Movies:/movies-remote
+      - /mnt/one-new/TV:/tv-remote2
+      - /mnt/one-new/Movies:/movies-remote2
     restart: unless-stopped
   
   sonarr:
@@ -67,11 +67,11 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022 #optional
     volumes:
-      - /home/nial/sonarr:/config
-      - /home/nial/Media/TV:/tv
-      - /home/nial/Media/DL:/downloads
-      - /home/nial/mnt/one-old/Media/TV:/tv-remote
-      - /home/nial/mnt/one-new/TV:/tv-remote2
+      - /bigpool/containers/sonarr:/config
+      - /bigpool/Media/TV:/tv
+      - /bigpool/Media/DL:/downloads
+      - /mnt/one-old/Media/TV:/tv-remote
+      - /mnt/one-new/TV:/tv-remote2
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -85,11 +85,11 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022 #optional
     volumes:
-      - /home/nial/radarr:/config
-      - /home/nial/Media/Movies:/movies
-      - /home/nial/Media/DL:/downloads
-      - /home/nial/mnt/one-old/Media/Movies:/movies-remote
-      - /home/nial/mnt/one-new/Movies:/movies-remote2
+      - /bigpool/containers/radarr:/config
+      - /bigpool/Media/Movies:/movies
+      - /bigpool/Media/DL:/downloads
+      - /mnt/one-old/Media/Movies:/movies-remote
+      - /mnt/one-new/Movies:/movies-remote2
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -102,8 +102,8 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022 #optional
     volumes:
-      - /home/nial/qbittorrent:/config
-      - /home/nial/Media/DL:/downloads
+      - /bigpool/containers/qbittorrent:/config
+      - /bigpool/Media/DL:/downloads
     restart: unless-stopped
     ports:
       - 8080:8080
