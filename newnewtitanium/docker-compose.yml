@@ -68,8 +68,7 @@ services:
       - UMASK_SET=022
     volumes:
       - /bigpool/containers/sonarr:/config
-      - /bigpool/Media/TV:/tv
-      - /bigpool/Media/DL:/downloads
+      - /bigpool/Media:/media
       - /mnt/one-old/Media/TV:/tv-remote
       - /mnt/one-new/TV:/tv-remote2
     ports:
@@ -86,8 +85,7 @@ services:
       - UMASK_SET=022 #optional
     volumes:
       - /bigpool/containers/radarr:/config
-      - /bigpool/Media/Movies:/movies
-      - /bigpool/Media/DL:/downloads
+      - /bigpool/Media:/media
       - /mnt/one-old/Media/Movies:/movies-remote
       - /mnt/one-new/Movies:/movies-remote2
     ports:
