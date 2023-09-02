@@ -101,7 +101,7 @@ services:
       - UMASK_SET=022 #optional
     volumes:
       - /bigpool/containers/qbittorrent:/config
-      - /bigpool/Media/DL:/downloads
+      - /bigpool/Media/DL:/media/DL
     restart: unless-stopped
     ports:
       - 8080:8080
