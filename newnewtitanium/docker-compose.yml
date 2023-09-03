@@ -107,3 +107,14 @@ services:
       - 8080:8080
       - 6881:6881
       - 6881:6881/udp
+  qbit_manage:
+    image: bobokun/qbit_manage
+    container_name: qbit_manage
+    volumes:
+      - /bigpool/containers/qbit_manage:/config
+      - /bigpool/Media/:/media/
+      - /bigpool/config/qbittorrent:/qbittorrent
+    environment:
+      - QBT_DRY_RUN=false
+      - QBT_SCHEDULE=30
+      - QBT_TAG_NOHARDLINKS=true
