@@ -115,6 +115,5 @@ services:
       - /bigpool/Media/:/media/
       - /bigpool/containers/qbittorrent:/qbittorrent
     environment:
-      - QBT_DRY_RUN=false
       - QBT_SCHEDULE=30
       - QBT_TAG_NOHARDLINKS=true
