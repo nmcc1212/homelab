@@ -113,7 +113,7 @@ services:
     volumes:
       - /bigpool/containers/qbit_manage:/config:rw
       - /bigpool/Media/:/media/
-      - /bigpool/config/qbittorrent:/qbittorrent
+      - /bigpool/containers/qbittorrent:/qbittorrent
     environment:
       - QBT_DRY_RUN=false
       - QBT_SCHEDULE=30
