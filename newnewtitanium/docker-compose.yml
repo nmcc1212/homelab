@@ -111,7 +111,7 @@ services:
     image: bobokun/qbit_manage
     container_name: qbit_manage
     volumes:
-      - /bigpool/containers/qbit_manage:/config
+      - /bigpool/containers/qbit_manage:/config:rw
       - /bigpool/Media/:/media/
       - /bigpool/config/qbittorrent:/qbittorrent
     environment:
