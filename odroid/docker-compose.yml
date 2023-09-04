@@ -18,14 +18,29 @@ services:
         image: 'ekofr/pihole-exporter:latest'
         container_name: pihole-exporter
         restart: unless-stopped
-    portainer-ce:
-        ports:
-            - '8000:8000'
-            - '9443:9443'
-            - '9000:9000'
-        container_name: portainer
-        restart: always
+    netdata:
+        image: netdata/netdata
+        container_name: netdata
+        pid: host
+        network_mode: host
+        restart: unless-stopped
+        cap_add:
+            - SYS_PTRACE
+            - SYS_ADMIN
+        security_opt:
+            - apparmor:unconfined
         volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'
-            - 'portainer_data:/data'
-        image: 'portainer/portainer-ce:latest'
+            - netdataconfig:/etc/netdata
+            - netdatalib:/var/lib/netdata
+            - netdatacache:/var/cache/netdata
+            - /etc/passwd:/host/etc/passwd:ro
+            - /etc/group:/host/etc/group:ro
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+            - /etc/os-release:/host/etc/os-release:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+
+volumes:
+    netdataconfig:
+    netdatalib:
+    netdatacache:
