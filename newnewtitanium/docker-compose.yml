@@ -12,11 +12,6 @@ services:
       - /bigpool/containers/jellyfin:/config
       - /bigpool/Media/TV:/data/tvshows
       - /bigpool/Media/Movies:/data/movies
-      - /mnt/one-old/Media/TV:/data/tvshows-remote
-      - /mnt/one-old/Media/Movies:/data/movies-remote
-      - /mnt/one-new/TV:/tv-remote2
-      - /mnt/one-new/Movies:/movies-remote2
-
     ports:
       - 8096:8096
       - 8920:8920 #HTTPS
@@ -52,10 +47,6 @@ services:
       - /bigpool/containers/plex:/config
       - /bigpool/Media/TV:/tv
       - /bigpool/Media/Movies:/movies
-      - /mnt/one-old/Media/TV:/tv-remote
-      - /mnt/one-old/Media/Movies:/movies-remote
-      - /mnt/one-new/TV:/tv-remote2
-      - /mnt/one-new/Movies:/movies-remote2
     restart: unless-stopped
   
   sonarr:
@@ -69,8 +60,6 @@ services:
     volumes:
       - /bigpool/containers/sonarr:/config
       - /bigpool/Media:/media
-      - /mnt/one-old/Media/TV:/tv-remote
-      - /mnt/one-new/TV:/tv-remote2
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -86,8 +75,6 @@ services:
     volumes:
       - /bigpool/containers/radarr:/config
       - /bigpool/Media:/media
-      - /mnt/one-old/Media/Movies:/movies-remote
-      - /mnt/one-new/Movies:/movies-remote2
     ports:
       - 7878:7878
     restart: unless-stopped
