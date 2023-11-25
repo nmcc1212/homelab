@@ -94,3 +94,19 @@ services:
       - 8080:8080
       - 6881:6881
       - 6881:6881/udp
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK_SET=022 #optional
+    volumes:
+      - /bigpool/containers/sabnzbd:/config
+      - /bigpool/Media/DL:/downloads
+      - /bigpool/Media/TV:/tv
+      - /bigpool/Media/Movies:/movies
+    ports:
+      - 8082:8080
+    restart: unless-stopped
