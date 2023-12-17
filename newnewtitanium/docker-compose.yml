@@ -110,6 +110,7 @@ services:
     restart: unless-stopped
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
     restart: unless-stopped
     ports:
       - '80:80'
@@ -118,3 +119,16 @@ services:
     volumes:
       - /bigpool/containers/nginx-proxy-manager/data:/data
       - /bigpool/containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+  
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'Europe/London'
+      WEBPASSWORD: 'ad'
