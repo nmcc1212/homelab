@@ -127,8 +127,22 @@ services:
       - /etc/os-release:/host/etc/os-release:ro
       - /var/log:/host/var/log:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+  
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr
+    container_name: recyclarr
+    user: 1000:1000
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /bigpool/containers/recyclarr:/config
+    restart: unless-stopped
 
 volumes:
   netdataconfig:
   netdatalib:
   netdatacache:
+networks:
+  recyclarr:
+    name: recyclarr
+    external: true
