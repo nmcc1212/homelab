@@ -164,7 +164,7 @@ services:
       - MYSQL_USER=
       - MYSQL_PASSWORD=
     volumes:
-      - /path/to/data:/config
+      - /bigpool/containers/snipe-it:/config
     ports:
       - 8084:80
     restart: unless-stopped
