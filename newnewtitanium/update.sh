@@ -1,4 +1,4 @@
-cd /users/nial/homelab/newnewtitanium
+cd /home/nial/homelab/newnewtitanium
 git pull
 docker compose down
 docker compose pull
