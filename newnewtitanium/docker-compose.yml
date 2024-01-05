@@ -181,7 +181,7 @@ services:
       - MYSQL_USER=snipe-it #optional
       - MYSQL_PASSWORD=ad #optional
     volumes:
-      - path_to_data:/config
+      - /bigpool/containers/mariadb:/config
     ports:
       - 3306:3306
     restart: unless-stopped
