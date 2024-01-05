@@ -158,8 +158,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - APP_URL=http://100.125.70.69:8084
-      - MYSQL_PORT_3306_TCP_ADDR=
-      - MYSQL_PORT_3306_TCP_PORT=
+      - MYSQL_PORT_3306_TCP_ADDR=100.125.70.69
+      - MYSQL_PORT_3306_TCP_PORT=3306
       - MYSQL_DATABASE=
       - MYSQL_USER=
       - MYSQL_PASSWORD=
@@ -167,6 +167,23 @@ services:
       - /bigpool/containers/snipe-it:/config
     ports:
       - 8084:80
+    restart: unless-stopped
+
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - MYSQL_ROOT_PASSWORD=ad
+      - MYSQL_DATABASE=snipe-it #optional
+      - MYSQL_USER=snipe-it #optional
+      - MYSQL_PASSWORD=ad #optional
+    volumes:
+      - path_to_data:/config
+    ports:
+      - 3306:3306
     restart: unless-stopped
 volumes:
   netdataconfig:
