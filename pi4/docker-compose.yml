@@ -4,7 +4,7 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - "/home/nial/influxdb:/var/lib/influxdb"
+      - "/home/nial/containers/influxdb:/var/lib/influxdb"
     image: "influxdb:1.8"
     container_name: influxdb
     restart: unless-stopped
@@ -30,8 +30,9 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - promehteus_data:/prometheus
+      - /home/nial/containers/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+
   heimdall:
     container_name: heimdall
     environment:
@@ -42,7 +43,7 @@ services:
       - "81:80"
       - "445:443"
     volumes:
-      - "/home/nial/heimdall:/config"
+      - "/home/nial/containers/heimdall:/config"
     restart: unless-stopped
     image: "lscr.io/linuxserver/heimdall:latest"
   grafana:
@@ -54,9 +55,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - "/home/nial/grafana:/var/lib/grafana"
+      - "/home/nial/containers/grafana:/var/lib/grafana"
     restart: unless-stopped
     image: "grafana/grafana:latest"
 
 volumes:
-    promehteus_data:
+    prometheus_data:
