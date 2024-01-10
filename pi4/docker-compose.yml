@@ -12,7 +12,7 @@ services:
     container_name: speedflux
     environment:
       - NAMESPACE=None
-      - INFLUX_DB_ADDRESS=100.88.213.67
+      - INFLUX_DB_ADDRESS=100.113.75.58
       - INFLUX_DB_PORT=8086
       - INFLUX_DB_USER=root
       - INFLUX_DB_PASSWORD=ad
