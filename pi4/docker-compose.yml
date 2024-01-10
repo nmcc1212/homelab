@@ -59,6 +59,14 @@ services:
       - "/home/nial/containers/grafana:/var/lib/grafana"
     restart: unless-stopped
     image: "grafana/grafana:latest"
+  pihole-exporter:
+      environment:
+          - PIHOLE_HOSTNAME=100.113.75.58
+          - PIHOLE_PASSWORD=
+          - PORT=9617
+      ports:
+          - 9617:9617
+      image: ekofr/pihole-exporter:latest
 
 volumes:
     prometheus_data:
