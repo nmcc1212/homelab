@@ -47,6 +47,7 @@ services:
     restart: unless-stopped
     image: "lscr.io/linuxserver/heimdall:latest"
   grafana:
+    user: '0'
     container_name: grafana
     environment:
       - PUID=1000
