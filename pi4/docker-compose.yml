@@ -1,25 +1,59 @@
-version: '3.3'
+version: "3.3"
 services:
-    influxdb:
-        ports:
-            - '8086:8086'
-        volumes:
-            - '/home/nial/influxdb:/var/lib/influxdb'
-        image: 'influxdb:1.8'
-        container_name: influxdb
-        restart: unless-stopped
-    speedtest-to-influxdb:
-        container_name: speedflux
-        environment:
-            - NAMESPACE=None
-            - INFLUX_DB_ADDRESS=100.88.213.67
-            - INFLUX_DB_PORT=8086
-            - INFLUX_DB_USER=root
-            - INFLUX_DB_PASSWORD=ad
-            - INFLUX_DB_DATABASE=speedtest
-            - SPEEDTEST_INTERVAL=5
-            - SPEEDTEST_FAIL_INTERVAL=5
-            - INFLUX_DB_TAGS=*
-            - LOG_TYPE=info
-        image: dontobi/speedflux.rpi
-        restart: unless-stopped
+  influxdb:
+    ports:
+      - "8086:8086"
+    volumes:
+      - "/home/nial/influxdb:/var/lib/influxdb"
+    image: "influxdb:1.8"
+    container_name: influxdb
+    restart: unless-stopped
+  speedtest-to-influxdb:
+    container_name: speedflux
+    environment:
+      - NAMESPACE=None
+      - INFLUX_DB_ADDRESS=100.88.213.67
+      - INFLUX_DB_PORT=8086
+      - INFLUX_DB_USER=root
+      - INFLUX_DB_PASSWORD=ad
+      - INFLUX_DB_DATABASE=speedtest
+      - SPEEDTEST_INTERVAL=5
+      - SPEEDTEST_FAIL_INTERVAL=5
+      - INFLUX_DB_TAGS=*
+      - LOG_TYPE=info
+    image: dontobi/speedflux.rpi
+    restart: unless-stopped
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - promehteus_data:/prometheus
+  heimdall:
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    ports:
+      - "81:80"
+      - "445:443"
+    volumes:
+      - "/home/nial/heimdall:/config"
+    restart: unless-stopped
+    image: "lscr.io/linuxserver/heimdall:latest"
+  grafana:
+    container_name: grafana
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    ports:
+      - "3000:3000"
+    volumes:
+      - "/home/nial/grafana:/var/lib/grafana"
+    restart: unless-stopped
+    image: "grafana/grafana:latest"
