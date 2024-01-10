@@ -57,3 +57,6 @@ services:
       - "/home/nial/grafana:/var/lib/grafana"
     restart: unless-stopped
     image: "grafana/grafana:latest"
+
+volumes:
+    promehteus_data:
