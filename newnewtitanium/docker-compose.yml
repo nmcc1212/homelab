@@ -151,10 +151,10 @@ services:
       - "/dev/sdf"
       - "/dev/sdg"
       - "/dev/sdh"
-      - "/dev/nvme0n1"
-      - "/dev/nvme1n1"
-      - "/dev/nvme2n1"
-      - "/dev/nvme3n1"
+      - "/dev/nvme0"
+      - "/dev/nvme1"
+      - "/dev/nvme2"
+      - "/dev/nvme3"
 
 volumes:
   netdataconfig:
