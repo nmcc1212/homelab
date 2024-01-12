@@ -68,5 +68,15 @@ services:
           - 9617:9617
       image: ekofr/pihole-exporter:latest
 
+  sabnzbd-exporter:
+      environment:
+          - SABNZBD_BASE_URLS=http://100.125.70.69:8082/sabnzbd/
+          - SABNZBD_API_KEY=c464f4dee3b64587ba22d0efd8849fdd
+      ports:
+            - 9387:9387
+      restart: always
+      image: msroest/sabnzbd_exporter
+
+
 volumes:
     prometheus_data:
