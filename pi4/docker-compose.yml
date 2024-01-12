@@ -60,15 +60,17 @@ services:
     restart: unless-stopped
     image: "grafana/grafana:latest"
   pihole-exporter:
-      environment:
-          - PIHOLE_HOSTNAME=100.113.75.58
-          - PIHOLE_PASSWORD=
-          - PORT=9617
-      ports:
-          - 9617:9617
-      image: ekofr/pihole-exporter:latest
+    container_name: pihole-exporter
+    environment:
+        - PIHOLE_HOSTNAME=100.113.75.58
+        - PIHOLE_PASSWORD=
+        - PORT=9617
+    ports:
+        - 9617:9617
+    image: ekofr/pihole-exporter:latest
 
   sabnzbd-exporter:
+      container_name: sabnzbd-exporter
       environment:
           - SABNZBD_BASE_URLS=http://100.125.70.69:8082/sabnzbd/
           - SABNZBD_API_KEY=c464f4dee3b64587ba22d0efd8849fdd
