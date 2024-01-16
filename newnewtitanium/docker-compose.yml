@@ -175,7 +175,7 @@ services:
       - SPEEDTEST_FAIL_INTERVAL=5
       - INFLUX_DB_TAGS=*
       - LOG_TYPE=info
-    image: dontobi/speedflux.rpi
+    image: ghcr.io/breadlysm/speedflux
     restart: unless-stopped
 volumes:
   netdataconfig:
