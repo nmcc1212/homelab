@@ -156,6 +156,13 @@ services:
       - "/dev/nvme2"
       - "/dev/nvme3"
 
+  smartctl-exporter:
+    image: prometheuscommunity/smartctl-exporter
+    privileged: true
+    user: root
+    ports:
+      - "9633:9633"
+
 volumes:
   netdataconfig:
   netdatalib:
