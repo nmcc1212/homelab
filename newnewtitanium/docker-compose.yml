@@ -155,28 +155,12 @@ services:
       - "/dev/nvme1"
       - "/dev/nvme2"
       - "/dev/nvme3"
-
   smartctl-exporter:
     image: prometheuscommunity/smartctl-exporter
     privileged: true
     user: root
     ports:
       - "9633:9633"
-  speedtest-to-influxdb:
-    container_name: speedflux
-    environment:
-      - NAMESPACE=None
-      - INFLUX_DB_ADDRESS=100.113.75.58
-      - INFLUX_DB_PORT=8086
-      - INFLUX_DB_USER=root
-      - INFLUX_DB_PASSWORD=ad
-      - INFLUX_DB_DATABASE=speedtest
-      - SPEEDTEST_INTERVAL=5
-      - SPEEDTEST_FAIL_INTERVAL=5
-      - INFLUX_DB_TAGS=*
-      - LOG_TYPE=info
-    image: ghcr.io/breadlysm/speedflux
-    restart: unless-stopped
 volumes:
   netdataconfig:
   netdatalib:
