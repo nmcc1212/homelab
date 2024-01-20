@@ -1,5 +1,5 @@
 cd /home/nial/homelab/newnewtitanium
 git pull
 docker compose pull
-docker compose down
-docker compose up -d
+docker compose down --remove-orphans
+docker compose up -d --remove-orphans
