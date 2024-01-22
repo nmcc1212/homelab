@@ -1,9 +1,9 @@
-name: Deploy Docker Compose pi4
+name: Deploy Docker Compose newnewtitanium
 
 on:
   push:
     paths:
-      - 'pi4/**'
+      - 'newnewtitanium/**'
     branches:
       - main
 
@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Docker Compose
-        run: docker-compose -f ./pi4/docker-compose.yml config
+        run: docker-compose -f ./newnewtitanium/docker-compose.yml config
 
       - name: Tailscale
         uses: tailscale/github-action@v2
@@ -28,11 +28,11 @@ jobs:
       - name: Deploy to remote host
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.NEWNEWTITANIUM_IP }}
+          username: ${{ secrets.NEWNEWTITANIUM_USER }}
+          password: ${{ secrets.NEWNEWTITANIUM_PASS }}
           script: |
-            cd /home/nial/homelab
+            cd /home/nial/homelab/newnewtitanium
             git pull
             docker compose pull
             docker compose up -d --remove-orphans
