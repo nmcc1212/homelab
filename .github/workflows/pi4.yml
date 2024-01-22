@@ -27,7 +27,7 @@ jobs:
         with:
           host: ${{ secrets.PI4_IP }}
           username: ${{ secrets.PI4_USER }}
-          password:: ${{ secrets.PI4_PASS }}
+          password: ${{ secrets.PI4_PASS }}
           script: |
             cd /home/nial/homelab/pi4
             git pull
