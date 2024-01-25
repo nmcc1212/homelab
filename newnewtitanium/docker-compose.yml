@@ -78,6 +78,7 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
+  
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
@@ -92,6 +93,7 @@ services:
     ports:
       - 8082:8080
     restart: unless-stopped
+  
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginx-proxy-manager
@@ -155,12 +157,26 @@ services:
       - "/dev/nvme1"
       - "/dev/nvme2"
       - "/dev/nvme3"
+  
   smartctl-exporter:
     image: prometheuscommunity/smartctl-exporter
+    container_name: smartctl-exporter
     privileged: true
     user: root
     ports:
       - "9633:9633"
+  
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: unless-stopped
+    volumes:
+      - /bigpool/containers/mongodb:/data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
 volumes:
   netdataconfig:
   netdatalib:
