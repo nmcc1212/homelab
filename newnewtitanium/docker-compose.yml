@@ -188,6 +188,27 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
       ME_CONFIG_MONGODB_URL: mongodb://root:password@100.125.70.69:27017/
+
+  cribl-master:
+    image: cribl/cribl:latest
+    environment:
+      - CRIBL_DIST_MODE=master
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@0.0.0.0:4200
+      - CRIBL_VOLUME_DIR=/opt/cribl/config-volume
+    ports:
+      - "19000:9000"
+    volumes:
+      - "/bigpool/containers/cribl:/opt/cribl/config-volume"
+  cribl-workers:
+    image: cribl/cribl:latest
+    depends_on: 
+      - cribl-master
+    environment:
+      - CRIBL_DIST_MODE=worker
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@master:4200
+    ports:
+      - 9000
+
 volumes:
   netdataconfig:
   netdatalib:
