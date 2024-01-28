@@ -22,7 +22,7 @@ services:
     restart: unless-stopped
 
   requestrr:
-    image: lscr.io/linuxserver/requestrr:latest
+    image: thomst08/requestrr
     container_name: requestrr
     environment:
       - PUID=1000
