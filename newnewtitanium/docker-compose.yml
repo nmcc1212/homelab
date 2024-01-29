@@ -8,6 +8,10 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - JELLYFIN_PublishedServerUrl=100.125.70.69
+      - JELLYFIN_DATA_DIR=/config/data
+      - JELLYFIN_CONFIG_DIR=/config
+      - JELLYFIN_LOG_DIR=/config/log
+      - JELLYFIN_CACHE_DIR=/config/cache
     volumes:
       - /bigpool/containers/jellyfin:/config
       - /bigpool/Media/TV:/data/tvshows
