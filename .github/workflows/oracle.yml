@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to remote host
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.NEWNEWTITANIUM_IP }}
+          host: ${{ secrets.ORACLE_IP }}
           username: ${{ secrets.ORACLE_USER }}
           key: ${{ secrets.ORACLE_KEY }}
           script: |
