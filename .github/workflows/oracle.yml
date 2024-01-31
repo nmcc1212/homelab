@@ -1,4 +1,4 @@
-name: Deploy Docker Compose newnewtitanium
+name: Deploy Docker Compose Oracle
 
 on:
   push:
