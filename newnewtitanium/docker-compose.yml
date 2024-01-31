@@ -1,28 +1,47 @@
 version: "2.1"
 services:
+  # jellyfin:
+  #   image: jellyfin/jellyfin:latest
+  #   container_name: jellyfin
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/London
+  #     - JELLYFIN_PublishedServerUrl=100.125.70.69
+  #     - JELLYFIN_DATA_DIR=/config/data
+  #     - JELLYFIN_CONFIG_DIR=/config
+  #     - JELLYFIN_LOG_DIR=/config/log
+  #     - JELLYFIN_CACHE_DIR=/config/cache
+  #   volumes:
+  #     - /bigpool/containers/jellyfin:/config
+  #     - /bigpool/Media/TV:/data/tvshows
+  #     - /bigpool/Media/Movies:/data/movies
+  #   ports:
+  #     - 8097:8096
+  #     - 8921:8920 #HTTPS
+  #     - 7350:7359/udp #optional
+  #     - 1902:1900/udp #optional
+  #   devices:
+  #     - /dev/dri:/dev/dri #intel
+  #   restart: unless-stopped
+
   jellyfin:
-    image: jellyfin/jellyfin:latest
-    container_name: jellyfin
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfinNEW
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/London
-      - JELLYFIN_PublishedServerUrl=100.125.70.69
-      - JELLYFIN_DATA_DIR=/config/data
-      - JELLYFIN_CONFIG_DIR=/config
-      - JELLYFIN_LOG_DIR=/config/log
-      - JELLYFIN_CACHE_DIR=/config/cache
+      - TZ=Etc/UTC
+      - JELLYFIN_PublishedServerUrl=100.125.70.69 #optional
     volumes:
-      - /bigpool/containers/jellyfin:/config
+      - /bigpool/containers/xjellyfin:/config
       - /bigpool/Media/TV:/data/tvshows
       - /bigpool/Media/Movies:/data/movies
     ports:
-      - 8097:8096
-      - 8921:8920 #HTTPS
-      - 7350:7359/udp #optional
-      - 1902:1900/udp #optional
-    devices:
-      - /dev/dri:/dev/dri #intel
+      - 8096:8096
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
     restart: unless-stopped
 
   requestrr:
