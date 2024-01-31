@@ -3,7 +3,7 @@ name: Deploy Docker Compose newnewtitanium
 on:
   push:
     paths:
-      - 'newnewtitanium/**'
+      - 'oracle/**'
     branches:
       - main
 
@@ -14,9 +14,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up Docker Compose
-        run: docker-compose -f ./newnewtitanium/docker-compose.yml config
 
       - name: Tailscale
         uses: tailscale/github-action@v2

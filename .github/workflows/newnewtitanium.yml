@@ -15,9 +15,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Compose
-        run: docker-compose -f ./newnewtitanium/docker-compose.yml config
-
       - name: Tailscale
         uses: tailscale/github-action@v2
         with:
