@@ -232,6 +232,17 @@ services:
     ports:
       - 9000
 
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ad
+    volumes:
+      - /fast-pool/containers/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+
 volumes:
   netdataconfig:
   netdatalib:
