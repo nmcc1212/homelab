@@ -64,6 +64,19 @@ services:
       restart: always
       image: msroest/sabnzbd_exporter
 
+  cribl:
+      privileged: true
+      environment:
+          - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium.tailnet-ea75.ts.net:4200?group
+          - CRIBL_DIST_MODE=managed-edge
+          - CRIBL_EDGE=1
+      ports:
+          - 9420:9420
+      volumes:
+          - /:/hostfs:ro
+      restart: unless-stopped
+      container_name: cribl-edge
+      image: cribl/cribl:latest
 
 volumes:
     prometheus_data:
