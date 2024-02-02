@@ -67,6 +67,8 @@ services:
   cribl:
       privileged: true
       environment:
+          - PUID=0
+          - PGID=0
           - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium.tailnet-ea75.ts.net:4200?group
           - CRIBL_DIST_MODE=managed-edge
           - CRIBL_EDGE=1
