@@ -221,7 +221,6 @@ services:
     ports:
       - "19000:9000"
       - "4200:4200"
-      - "10300:10300"
     volumes:
       - "/bigpool/containers/cribl:/opt/cribl/config-volume"
   cribl-workers:
@@ -232,6 +231,7 @@ services:
       - CRIBL_DIST_MODE=worker
       - CRIBL_DIST_MASTER_URL=tcp://criblmaster@cribl-master:4200
     ports:
+      - "10300:10300"
       - 9000
 
   mysql:
