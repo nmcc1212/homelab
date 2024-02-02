@@ -228,7 +228,7 @@ services:
       - cribl-master
     environment:
       - CRIBL_DIST_MODE=worker
-      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@master:4200
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@cribl-master:4200
     ports:
       - 9000
 
