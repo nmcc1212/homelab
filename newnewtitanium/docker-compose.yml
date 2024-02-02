@@ -220,6 +220,7 @@ services:
       - CRIBL_VOLUME_DIR=/opt/cribl/config-volume
     ports:
       - "19000:9000"
+      - "4200:4200"
     volumes:
       - "/bigpool/containers/cribl:/opt/cribl/config-volume"
   cribl-workers:
