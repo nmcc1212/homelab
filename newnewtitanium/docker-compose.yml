@@ -233,6 +233,7 @@ services:
     ports:
       - "10300:10300"
       - 9000
+      - "9200:9200"
 
   mysql:
     image: mysql:latest
