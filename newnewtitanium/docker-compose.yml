@@ -111,7 +111,7 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022
     volumes:
-      - /bigpool/containers/sabnzbd:/config
+      - /fast-pool/containers/sabnzbd:/config
       - /bigpool/Media/DL:/media/DL
     ports:
       - 8082:8080
