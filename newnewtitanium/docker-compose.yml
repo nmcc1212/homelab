@@ -71,7 +71,7 @@ services:
       - /bigpool/Media/TV:/tv
       - /bigpool/Media/Movies:/movies
     restart: unless-stopped
-  
+
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
@@ -101,7 +101,7 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
-  
+
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
@@ -116,15 +116,15 @@ services:
     ports:
       - 8082:8080
     restart: unless-stopped
-  
+
   nginx-proxy-manager:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: "jc21/nginx-proxy-manager:latest"
     container_name: nginx-proxy-manager
     restart: unless-stopped
     ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
+      - "80:80"
+      - "81:81"
+      - "443:443"
     volumes:
       - /bigpool/containers/nginx-proxy-manager/data:/data
       - /bigpool/containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
@@ -180,7 +180,7 @@ services:
       - "/dev/nvme1"
       - "/dev/nvme2"
       - "/dev/nvme3"
-  
+
   smartctl-exporter:
     image: prometheuscommunity/smartctl-exporter
     container_name: smartctl-exporter
@@ -188,7 +188,7 @@ services:
     user: root
     ports:
       - "9633:9633"
-  
+
   mongodb:
     image: mongo
     container_name: mongodb
@@ -225,7 +225,7 @@ services:
       - "/bigpool/containers/cribl:/opt/cribl/config-volume"
   cribl-workers:
     image: cribl/cribl:latest
-    depends_on: 
+    depends_on:
       - cribl-master
     environment:
       - CRIBL_DIST_MODE=worker
@@ -247,13 +247,15 @@ services:
       - 3306:3306
 
   bitwarden:
-      container_name: vaultwarden
-      volumes:
-          - /fast-pool/containers/vaultwarden/:/data/
-      restart: unless-stopped
-      ports:
-          - 88:80
-      image: vaultwarden/server:latest
+    container_name: vaultwarden
+    volumes:
+      - /fast-pool/containers/vaultwarden/:/data/
+    restart: unless-stopped
+    ports:
+      - 88:80
+    image: vaultwarden/server:latest
+    environment:
+      - SIGNUPS_ALLOWED=false
 volumes:
   netdataconfig:
   netdatalib:
