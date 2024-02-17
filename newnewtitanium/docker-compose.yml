@@ -246,6 +246,14 @@ services:
     ports:
       - 3306:3306
 
+  bitwarden:
+      container_name: vaultwarden
+      volumes:
+          - /fast-pool/containers/vaultwarden/:/data/
+      restart: unless-stopped
+      ports:
+          - 88:80
+      image: vaultwarden/server:latest
 volumes:
   netdataconfig:
   netdatalib:
