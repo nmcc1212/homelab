@@ -256,6 +256,7 @@ services:
     image: vaultwarden/server:latest
     environment:
       - SIGNUPS_ALLOWED=false
+      - DOMAIN=https://bitwarden.n1al.com
 volumes:
   netdataconfig:
   netdatalib:
