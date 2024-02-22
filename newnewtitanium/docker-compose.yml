@@ -25,25 +25,6 @@ services:
       - /dev/dri:/dev/dri #intel
     restart: unless-stopped
 
-  # jellyfin:
-  #   image: lscr.io/linuxserver/jellyfin:latest
-  #   container_name: jellyfinNEW
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - TZ=Etc/UTC
-  #     - JELLYFIN_PublishedServerUrl=100.125.70.69 #optional
-  #   volumes:
-  #     - /bigpool/containers/xjellyfin:/config
-  #     - /bigpool/Media/TV:/data/tvshows
-  #     - /bigpool/Media/Movies:/data/movies
-  #   ports:
-  #     - 8096:8096
-  #     - 8920:8920 #optional
-  #     - 7359:7359/udp #optional
-  #     - 1900:1900/udp #optional
-  #   restart: unless-stopped
-
   requestrr:
     image: thomst08/requestrr
     container_name: requestrr
@@ -81,7 +62,7 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022
     volumes:
-      - /bigpool/containers/sonarr:/config
+      - /fast-pool/containers/sonarr:/config
       - /bigpool/Media:/media
     ports:
       - 8989:8989
@@ -96,7 +77,7 @@ services:
       - TZ=Europe/London
       - UMASK_SET=022 #optional
     volumes:
-      - /bigpool/containers/radarr:/config
+      - /fast-pool/containers/radarr:/config
       - /bigpool/Media:/media
     ports:
       - 7878:7878
