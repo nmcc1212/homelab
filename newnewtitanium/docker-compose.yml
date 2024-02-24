@@ -64,6 +64,7 @@ services:
     volumes:
       - /fast-pool/containers/sonarr:/config
       - /bigpool/Media:/media
+      - /fast-pool/containers/sabnzbd/complete:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -79,6 +80,7 @@ services:
     volumes:
       - /fast-pool/containers/radarr:/config
       - /bigpool/Media:/media
+      - /fast-pool/containers/sabnzbd/complete:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -93,7 +95,7 @@ services:
       - UMASK_SET=022
     volumes:
       - /fast-pool/containers/sabnzbd:/config
-      - /bigpool/Media/DL:/media/DL
+      # - /bigpool/Media/DL:/media/DL
       - /fast-pool/containers/sabnzbd/incomplete:/incomplete-downloads
       - /fast-pool/containers/sabnzbd/complete:/complete-downloads
     ports:
