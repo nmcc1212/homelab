@@ -94,6 +94,7 @@ services:
     volumes:
       - /fast-pool/containers/sabnzbd:/config
       - /bigpool/Media/DL:/media/DL
+      - /fast-pool/containers/sabnzbd/incomplete:/incomplete-downloads
     ports:
       - 8082:8080
     restart: unless-stopped
