@@ -244,6 +244,7 @@ services:
       - DOMAIN=https://bitwarden.n1al.com
       - ADMIN_TOKEN=$$argon2id$$v=19$$m=19456,t=2,p=1$$c09HVzVnendydkNNYkNKZ3loaWNEN0l6akNEUWZjRmxYNFM2OG16U1dYMD0$$m/u1YWIHIUf3ZnA/Z/VroZ3O0e+LvylLMwqWRGiV2nk
   golink:
+    container_name: golink
     volumes:
       - /fast-pool/containers/golink:/home/nonroot
     image: ghcr.io/tailscale/golink:main
