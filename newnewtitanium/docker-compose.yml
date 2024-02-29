@@ -266,5 +266,3 @@ volumes:
   netdatalib:
   netdatacache:
   portainer_data:
-    external:
-      name: portainer_data
