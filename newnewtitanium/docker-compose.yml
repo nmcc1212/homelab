@@ -260,7 +260,6 @@ services:
       - portainer_data:/data
     image: portainer/portainer-ce:latest
 
-
 volumes:
   netdataconfig:
   netdatalib:
