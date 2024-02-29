@@ -44,6 +44,7 @@ services:
       - "/home/nial/containers/grafana:/var/lib/grafana"
     restart: unless-stopped
     image: "grafana/grafana:latest"
+  
   pihole-exporter:
     container_name: pihole-exporter
     environment:
