@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
     image: "lscr.io/linuxserver/heimdall:latest"
   grafana:
-    user: '0'
+    user: "0"
     container_name: grafana
     environment:
       - PUID=1000
@@ -44,42 +44,42 @@ services:
       - "/home/nial/containers/grafana:/var/lib/grafana"
     restart: unless-stopped
     image: "grafana/grafana:latest"
-  
+
   pihole-exporter:
     container_name: pihole-exporter
     environment:
-        - PIHOLE_HOSTNAME=100.113.75.58
-        - PIHOLE_PASSWORD=
-        - PORT=9617
+      - PIHOLE_HOSTNAME=100.113.75.58
+      - PIHOLE_PASSWORD=
+      - PORT=9617
     ports:
-        - 9617:9617
+      - 9617:9617
     image: ekofr/pihole-exporter:latest
 
   sabnzbd-exporter:
-      container_name: sabnzbd-exporter
-      environment:
-          - SABNZBD_BASEURL=http://100.125.70.69:8082/sabnzbd/
-          - SABNZBD_APIKEY=c464f4dee3b64587ba22d0efd8849fdd
-      ports:
-            - 9387:9387
-      restart: always
-      image: msroest/sabnzbd_exporter
+    container_name: sabnzbd-exporter
+    environment:
+      - SABNZBD_BASEURL=http://100.125.70.69:8082/sabnzbd/
+      - SABNZBD_APIKEY=c464f4dee3b64587ba22d0efd8849fdd
+    ports:
+      - 9387:9387
+    restart: always
+    image: msroest/sabnzbd_exporter
 
   cribl:
-      privileged: true
-      environment:
-          - PUID=0
-          - PGID=0
-          - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium.tailnet-ea75.ts.net:4200?group
-          - CRIBL_DIST_MODE=managed-edge
-          - CRIBL_EDGE=1
-      ports:
-          - 9420:9420
-      volumes:
-          - /:/hostfs:ro
-      restart: unless-stopped
-      container_name: cribl-edge
-      image: cribl/cribl:latest
+    privileged: true
+    environment:
+      - PUID=0
+      - PGID=0
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium.tailnet-ea75.ts.net:4200?group
+      - CRIBL_DIST_MODE=managed-edge
+      - CRIBL_EDGE=1
+    ports:
+      - 9420:9420
+    volumes:
+      - /:/hostfs:ro
+    restart: unless-stopped
+    container_name: cribl-edge
+    image: cribl/cribl:latest
 
   portainer_agent:
     ports:
@@ -87,9 +87,9 @@ services:
     container_name: portainer_agent
     restart: always
     volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - /var/lib/docker/volumes:/var/lib/docker/volumes
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
     image: portainer/agent:latest
 
 volumes:
-    prometheus_data:
+  prometheus_data:
