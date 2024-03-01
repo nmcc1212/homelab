@@ -3,7 +3,7 @@ name: Deploy Docker Compose newnewtitanium
 on:
   push:
     paths:
-      - 'newnewtitanium/**'
+      - "newnewtitanium/**"
     branches:
       - main
 
