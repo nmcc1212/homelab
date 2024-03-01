@@ -1,4 +1,4 @@
-version: "2.1"
+version: "3.3"
 services:
   jellyfin:
     image: jellyfin/jellyfin:latest
@@ -114,30 +114,6 @@ services:
       - /bigpool/containers/nginx-proxy-manager/data:/data
       - /bigpool/containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-  netdata:
-    image: netdata/netdata
-    container_name: netdata
-    pid: host
-    network_mode: host
-    restart: unless-stopped
-    cap_add:
-      - SYS_PTRACE
-      - SYS_ADMIN
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - netdataconfig:/etc/netdata
-      - netdatalib:/var/lib/netdata
-      - netdatacache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-      - /var/log:/host/var/log:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-
   scrutiny:
     container_name: scrutiny
     image: ghcr.io/analogj/scrutiny:master-omnibus
@@ -243,6 +219,7 @@ services:
       - SIGNUPS_ALLOWED=false
       - DOMAIN=https://bitwarden.n1al.com
       - ADMIN_TOKEN=$$argon2id$$v=19$$m=19456,t=2,p=1$$c09HVzVnendydkNNYkNKZ3loaWNEN0l6akNEUWZjRmxYNFM2OG16U1dYMD0$$m/u1YWIHIUf3ZnA/Z/VroZ3O0e+LvylLMwqWRGiV2nk
+  
   golink:
     container_name: golink
     volumes:
@@ -261,7 +238,4 @@ services:
     image: portainer/portainer-ce:latest
 
 volumes:
-  netdataconfig:
-  netdatalib:
-  netdatacache:
   portainer_data:
