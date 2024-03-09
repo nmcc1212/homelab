@@ -250,7 +250,7 @@ services:
     volumes:
       - /fast-pool/containers/elasticsearch:/usr/share/elasticsearch/
     ports:
-      - 9200:9200
+      - 9201:9200
     restart: unless-stopped
 
 volumes:
