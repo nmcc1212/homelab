@@ -149,6 +149,7 @@ services:
     user: root
     ports:
       - "9633:9633"
+    restart: unless-stopped
 
   mongodb:
     image: mongo
@@ -184,6 +185,7 @@ services:
       - "4200:4200"
     volumes:
       - "/bigpool/containers/cribl:/opt/cribl/config-volume"
+    restart: unless-stopped
   cribl-workers:
     image: cribl/cribl:latest
     depends_on:
@@ -195,6 +197,7 @@ services:
       - "10300:10300"
       - 9000
       - "9200:9200"
+    restart: unless-stopped
 
   mysql:
     image: mysql:latest
@@ -225,6 +228,7 @@ services:
     volumes:
       - /fast-pool/containers/golink:/home/nonroot
     image: ghcr.io/tailscale/golink:main
+    restart: unless-stopped
 
   portainer-ce:
     ports:
