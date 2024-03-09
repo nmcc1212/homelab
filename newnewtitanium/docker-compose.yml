@@ -241,5 +241,17 @@ services:
       - portainer_data:/data
     image: portainer/portainer-ce:latest
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - node.name=newnewtitanium
+    volumes:
+      - /fast-pool/containers/elasticsearch:/usr/share/elasticsearch/
+    ports:
+      - 9200:9200
+    restart: unless-stopped
+
 volumes:
   portainer_data:

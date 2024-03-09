@@ -8,13 +8,13 @@ services:
     image: "influxdb:1.8"
     container_name: influxdb
     restart: unless-stopped
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus
     restart: unless-stopped
     ports:
       - 9090:9090
-      - 9200:9200
     volumes:
       - /home/nial/containers/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
