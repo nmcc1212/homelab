@@ -248,7 +248,7 @@ services:
       - discovery.type=single-node
       - node.name=newnewtitanium
     volumes:
-      - /fast-pool/containers/elasticsearch:/usr/share/elasticsearch/
+      - /fast-pool/containers/elasticsearch:/usr/share/elasticsearch/data
     ports:
       - 9201:9200
     restart: unless-stopped
