@@ -29,7 +29,7 @@ services:
   cribl:
     privileged: true
     environment:
-      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium:4200?group=default_fleet&tag=oracle
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@100.125.70.69:4200?group=default_fleet&tag=oracle
       - CRIBL_DIST_MODE=managed-edge
       - CRIBL_EDGE=1
     ports:
