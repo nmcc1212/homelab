@@ -74,7 +74,6 @@ services:
       - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium.tailnet-ea75.ts.net:4200?group
       - CRIBL_DIST_MODE=managed-edge
       - CRIBL_EDGE=1
-      - CRIBL_BOOTSTRAP_HOST=T3ST
     ports:
       - 9420:9420
     volumes:
