@@ -27,6 +27,7 @@ services:
     restart: unless-stopped
 
   cribl:
+    hostname: oracle
     privileged: true
     environment:
       - CRIBL_DIST_MASTER_URL=tcp://criblmaster@100.125.70.69:4200?group=default_fleet&tag=oracle

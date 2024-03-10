@@ -77,6 +77,7 @@ services:
     image: portainer/agent:latest
 
   cribl:
+    hostname: pi4
     privileged: true
     environment:
       - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium:4200?group=default_fleet&tag=pi4
