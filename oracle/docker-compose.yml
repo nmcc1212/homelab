@@ -26,6 +26,20 @@ services:
       - 3001:3001
     restart: unless-stopped
 
+  cribl:
+    privileged: true
+    environment:
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium:4200?group=default_fleet&tag=oracle
+      - CRIBL_DIST_MODE=managed-edge
+      - CRIBL_EDGE=1
+    ports:
+      - 9420:9420
+    volumes:
+      - /:/hostfs:ro
+    restart: unless-stopped
+    container_name: cribl-edge
+    image: cribl/cribl:latest
+
   agent:
     ports:
       - 9001:9001
