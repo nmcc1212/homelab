@@ -199,6 +199,21 @@ services:
       - "9200:9200"
       - "10200:10200"
     restart: unless-stopped
+  cribl-edge:
+    hostname: newnewtitanium
+    privileged: true
+    environment:
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@newnewtitanium:4200?group=default_fleet&tag=newnewtitanium
+      - CRIBL_DIST_MODE=managed-edge
+      - CRIBL_EDGE=1
+    ports:
+      - 9420:9420
+    volumes:
+      - /:/hostfs:ro
+    restart: unless-stopped
+    container_name: cribl-edge
+    image: cribl/cribl:latest
+    network_mode: host
 
   mysql:
     image: mysql:latest
