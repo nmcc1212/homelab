@@ -19,7 +19,11 @@ services:
       - /home/nial/containers/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
-      - '--storage.tsdb.retention.time=365d'
+      - "--storage.tsdb.retention.time=365d"
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
 
   heimdall:
     container_name: heimdall
@@ -34,7 +38,7 @@ services:
       - "/home/nial/containers/heimdall:/config"
     restart: unless-stopped
     image: "lscr.io/linuxserver/heimdall:latest"
-  
+
   grafana:
     user: "0"
     container_name: grafana
